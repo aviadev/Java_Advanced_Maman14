@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 public class DictionaryPanel extends JPanel
 {
 
+
 private JFrame frame;
 private Dictionary dictionary;
 private JList itemList;
@@ -133,6 +134,7 @@ private class ControlsListener implements ActionListener
 				try
 					{
 					dictionary.deleteTerm(term);
+						txtData.setText(dictionary.toString());
 					} catch (DictionaryExceptions ex)
 					{
 					JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -145,6 +147,7 @@ private class ControlsListener implements ActionListener
 				try
 					{
 					dictionary.updateTerm(dv.term, dv.translation);
+						txtData.setText(dictionary.toString());
 					} catch (DictionaryExceptions ex)
 					{
 					JOptionPane.showMessageDialog(null, ex.getMessage());

@@ -71,7 +71,7 @@ public String toString()
 private String toString(Node<E> node)
 	{
 		if (node == null) return "";
-		else return node.getItem() + "\t" + toString(node.getNext());
+		else return node.getItem() + "\n" + toString(node.getNext());
 	}
 
 protected Node<E> getFirstElement() {return head;}
