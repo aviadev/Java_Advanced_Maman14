@@ -97,8 +97,7 @@ private class ControlsListener implements ActionListener
 		{
 			if (e.getSource() == cmdAddVal)
 				{
-				if (!txtTranslation.equals(null) && !txtTerm.equals(null) && !String.valueOf(
-						txtTerm).isEmpty() && !String.valueOf(txtTranslation).isEmpty())
+				if (!String.valueOf(txtTerm.getText()).isEmpty() && !String.valueOf(txtTranslation.getText()).isEmpty())
 					{
 					DictionaryValue dv = new DictionaryValue(txtTerm.getText(), txtTranslation.getText());
 					try
@@ -112,22 +111,23 @@ private class ControlsListener implements ActionListener
 					repaint();
 					}
 				}
-			/*else if(e.getSource() == cmdFindPath)
+			else if (e.getSource() == cmdFindVal)
 				{
-				if(!txtFrom.equals(null) && !txtTo.equals(null))
+				if (!String.valueOf(txtTerm.getText()).isEmpty())
 					{
-					City c1 = findCity(txtFrom.getText());
-					City c2 = findCity(txtTo.getText());
-					try {
-					currentPath = map.findPath(c1, c2);
+					try
+						{
+
+						DictionaryValue dv = new DictionaryValue(txtTerm.getText(), txtTranslation.getText());
+						DictionaryValue found = dictionary.findTerm(dv);
+						JOptionPane.showMessageDialog(null, found);
 					repaint();
-					}
-					catch(NoPathException ex)
+					} catch (DictionaryExceptions ex)
 						{
 						JOptionPane.showMessageDialog(null, ex.getMessage());
 						}
 					}
-				}*/
+				}
 			else if (e.getSource() == cmdDeleteVal)
 				{
 				String term = txtTerm.getText();
