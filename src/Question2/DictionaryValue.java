@@ -11,7 +11,7 @@ public DictionaryValue() {}
 
 public DictionaryValue(String term, String translation)
 	{
-		this.term = term;
+		this.term = term.toLowerCase();
 		this.translation = translation;
 	}
 
@@ -29,7 +29,7 @@ public boolean equals(Object other)
 @Override
 public String toString()
 	{
-		return "term: " + term + ", Translation = " + translation;
+		return "Term: " + term + ", Translation = " + translation;
 	}
 
 }

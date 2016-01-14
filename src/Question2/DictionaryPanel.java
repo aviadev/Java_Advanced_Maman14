@@ -4,6 +4,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.MessageFormat;
 
 /**
  * Created by aviad on 09/01/2016.
@@ -31,15 +32,6 @@ public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 
-/*		ArrayList<City> cities = map.getCities();
-		for(City c : cities)
-			{
-			g.drawOval(c.getCenterX(), c.getCenterY(), 3, 3);
-			g.drawString(c.getCityName(), c.getCenterX(), c.getCenterY());
-			}
-		drawEdges(g, cities);
-		if(currentPath != null)
-			drawPath(g);*/
 	}
 
 private void makeFrame()
@@ -51,8 +43,6 @@ private void makeFrame()
 		JPanel contentPane = (JPanel) frame.getContentPane();
 		contentPane.setLayout(new BorderLayout(8, 8));
 		contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
-
-		//contentPane.add(txtOutput, BorderLayout.SOUTH);
 
 		JPanel buttonPanel = new JPanel(new GridLayout(2, 4, 10, 10));
 
@@ -120,21 +110,24 @@ private class ControlsListener implements ActionListener
 
 						DictionaryValue dv = new DictionaryValue(txtTerm.getText(), txtTranslation.getText());
 						DictionaryValue found = dictionary.findTerm(dv);
-						JOptionPane.showMessageDialog(null, found);
-					repaint();
-					} catch (DictionaryExceptions ex)
+						JOptionPane.showMessageDialog(null,
+								MessageFormat.format("Term was Found!\nTerm: {0}\nTranslation: {1}\n", found.term,
+										found.translation));
+						} catch (DictionaryExceptions ex)
 						{
 						JOptionPane.showMessageDialog(null, ex.getMessage());
 						}
+					repaint();
 					}
 				}
 			else if (e.getSource() == cmdDeleteVal)
 				{
-				String term = txtTerm.getText();
+				String term = txtTerm.getText().toLowerCase();
 				try
 					{
 					dictionary.deleteTerm(term);
-						txtData.setText(dictionary.toString());
+					txtData.setText(dictionary.toString());
+
 					} catch (DictionaryExceptions ex)
 					{
 					JOptionPane.showMessageDialog(null, ex.getMessage());
